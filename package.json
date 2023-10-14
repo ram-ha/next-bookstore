@@ -1,18 +1,24 @@
 {
-  "name": "nextjs-blueprint",
-  "version": "1.0.0",
-  "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start",
-    "post-update": "yarn upgrade --latest"
-  },
-  "dependencies": {
-    "next": "12.2.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
-  },
-  "license": "MIT",
-  "keywords": [],
-  "description": ""
+    "name": "next-bookstore",
+    "version": "1.0.0",
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "post-update": "yarn upgrade --latest"
+    },
+    "dependencies": {
+        "next": "12.2.0",
+        "react": "18.2.0",
+        "react-dom": "18.2.0"
+    },
+    "devDependencies": {
+        "autoprefixer": "^10",
+        "postcss": "^8",
+        "eslint": "^8",
+        "eslint-config-next": "13.5.4"
+    },
+    "license": "MIT",
+    "keywords": [],
+    "description": ""
 }
