@@ -1,102 +1,126 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 export default function bestsellers({ bookList }) {
-  const { books } = bookList;
-  return (
-    <div className="bookList">
-      <h2 className="title">{bookList.display_name} BOOKS</h2>
-      <div className="books border">
-        {books.map((book) => (
-          <div className="book border" key={book.primary_isbn10}>
-            <img src={book.book_image} />
-            <h4>{book.title}</h4>
-            <p>{book.author}</p>
-            <Link href={book.buy_links[5].url}>
-              <a className="buyBtn border button">Buy now &rarr;</a>
-            </Link>
-            <div className="rank">Rank{book.rank}</div>
-          </div>
-        ))}
-      </div>
-      <style jsx>
-        {`
-          .bookList {
-            display: flex;
-            flex-direction: column;
-            padding: 50px;
-          }
-          .title {
-            margin: 0 auto;
-            margin-bottom: 100px;
-          }
-          .books {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            width: 100%;
-            gap: 70px 30px;
-          }
-          @media (max-width: 840px) {
-            h2 {
-              margin-bottom: 50px;
-            }
-            .books {
-              grid-template-columns: repeat(2, 1fr);
-            }
-          }
-          .books img {
-            width: 100%;
-            height: 100%;
-            max-height: 450px;
-            object-fit: cover;
-            margin-top: -10px;
-          }
-          .book {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            position: relative;
-            padding-bottom: 10px;
-            box-shadow: 2px 8px 10px -3px hsla(0, 0%, 0%, 0.3);
-          }
-          .book :not(img:first-of-type) {
-            margin: 0 20px;
-          }
-          .book h4 {
-            font-size: 25px;
-          }
-          .book p {
-            color: #706fd3;
-          }
-          .buyBtn {
-            font-size: 20px;
-            width: fit-content;
-            padding: 10px;
-          }
-          .rank {
-            border: 1px solid white;
-            border-radius: 50%;
-            padding: 5px;
-            color: white;
-            font-size: 20px;
-            position: absolute;
-            background: rgba(30, 30, 30, 0.5);
-            top: -10px;
-            left: -10px;
-          }
-        `}
-      </style>
-    </div>
-  );
+    const { books } = bookList;
+    return (
+        <div className="bookList">
+            <div className="title">{bookList.display_name} BOOKS</div>
+            <div className="booksWrap">
+                {books.map((book) => (
+                    <div className="book" key={book.primary_isbn10}>
+                        <div className="imgBox">
+                            <img src={book.book_image} />
+                        </div>
+                        <div className="rank">{book.rank}</div>
+                        <div className="clip" />
+                        <div className="bookName">{book.title}</div>
+                        <div className="author">{book.author}</div>
+                        <div className="buyBtn">
+                            <Link href={book.buy_links[5].url}>
+                                <a target="_blank">Buy now &rarr;</a>
+                            </Link>
+                        </div>
+                    </div>
+                ))}
+            </div>
+            <style jsx>
+                {`
+                    .booksWrap {
+                        display: grid;
+                        grid-template-columns: repeat(4, 1fr);
+                        width: 80%;
+                        gap: 50px 30px;
+                        padding: 20px;
+                        margin: 0 auto;
+                        border-left: 1px solid #449745;
+                        border-right: 1px solid #449745;
+                    }
+                    .book {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-start;
+                        align-items: center;
+                        position: relative;
+                        box-shadow: 0 0 1rem -3px hsla(0, 0%, 0%, 0.2), inset 0 0 1rem -3px hsla(0, 0%, 0%, 0.1);
+                        padding-bottom: 10px;
+                    }
+                    .imgBox {
+                        background-color: #065a07;
+                        width: 100%;
+                        height: 280px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    .imgBox img {
+                        width: 60%;
+                        max-height: 200px;
+                        object-fit: contain;
+                    }
+
+                    .bookName {
+                        font-size: 20px;
+                        padding: 8px 5px;
+                        font-weight: bold;
+                        text-align: center;
+                        color: #063f07;
+                    }
+                    .author {
+                        text-align: center;
+                        padding: 0 5px;
+                        font-size: 14px;
+                        padding: 5px 0;
+                    }
+                    .buyBtn {
+                        font-size: 16px;
+                        border: 1px solid #84b284;
+                        border-radius: 30px;
+                        padding: 5px 15px 7px;
+                        margin: 10px 0 5px;
+                        cursor: pointer;
+                        &:hover {
+                            background-color: #063f07;
+                            color: #ffffff;
+                            border: 1px solid #063f07;
+                        }
+                    }
+                    .rank {
+                        color: tomato;
+                        font-family: 'Heebo', sans-serif;
+                        font-size: 28px;
+                        font-weight: bold;
+                        position: absolute;
+                        top: -5px;
+                        right: 7px;
+                        z-index: 99;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    .clip {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        width: 0;
+                        height: 0;
+                        transform: rotate(-180deg);
+                        border-bottom: 30px solid #ffffff;
+                        border-top: 30px solid transparent;
+                        border-left: 40px solid #ffffff;
+                        border-right: 40px solid transparent;
+                    }
+                `}
+            </style>
+        </div>
+    );
 }
 export async function getServerSideProps({ params: { id } }) {
-  const { results: bookList } = await (
-    await fetch(`http://localhost:3000/api/books/${id}`)
-  ).json();
+    const { results: bookList } = await (await fetch(`http://localhost:3000/api/books/${id}`)).json();
 
-  return {
-    props: {
-      id,
-      bookList,
-    },
-  };
+    return {
+        props: {
+            id,
+            bookList,
+        },
+    };
 }

@@ -1,35 +1,40 @@
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+    :root {
+        --foreground-rgb: 255, 255, 255;
+        --background-start-rgb: 0, 0, 0;
+        --background-end-rgb: 0, 0, 0;
+    }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-  font-family: "Cormorant Infant", serif;
-  max-width: 520px;
-  width: 100%;
-  margin: 0 auto;
+    color: #449745;
+    background-color: #efebe1;
+    font-family: 'Playfair Display', serif;
+    /* max-width: 550px; */
+    border-left: 1px solid #449745;
+    border-right: 1px solid #449745;
+    width: 100%;
+    margin: 0 auto;
 }
 
+.title {
+    border-bottom: 1px solid #449745;
+    color: #065a07;
+    text-align: center;
+    padding: 20px;
+    font-size: 28px;
+    font-weight: bold;
+}
 a {
-  color: inherit;
-  text-decoration: none;
+    color: inherit;
+    text-decoration: none;
 }
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
